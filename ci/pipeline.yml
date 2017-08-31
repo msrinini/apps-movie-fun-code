@@ -8,7 +8,7 @@ resources:
 - name: deploy-moviefun
   type: cf
   source:
-    api: apps.pikes.pal.pivotal.io        #<---- REPLACE ME
+    api: https://api.sys.pikes.pal.pivotal.io        #<---- REPLACE ME
     username: {{cf-user}}
     password: {{cf-password}}
     organization: smadugula-pal    #<---- REPLACE ME
