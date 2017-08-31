@@ -7,4 +7,4 @@ applications:
   stack: cflinuxfs2
   path: target/moviefun.war
   services:
-    - attendee-mysql
+  
