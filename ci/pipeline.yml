@@ -1,0 +1,28 @@
+resources:
+- name: moviefun
+  type: git
+  source:
+    uri: https://github.com/msrinini/apps-movie-fun-code  #<---- REPLACE ME
+    branch: spring-boot
+
+- name: deploy-moviefun
+  type: cf
+  source:
+    api: apps.pikes.pal.pivotal.io        #<---- REPLACE ME
+    username: {{cf-user}}
+    password: {{cf-password}}
+    organization: smadugula-pal    #<---- REPLACE ME
+    space: sandbox         #<---- REPLACE ME
+    skip_cert_check: true
+
+jobs:
+- name: build
+  public: true
+  plan:
+  - get: moviefun
+  - task: package
+    file: moviefun/ci/tasks/package.yml
+  - put: deploy-moviefun
+    params:
+      manifest: moviefun/manifest.yml
+      path: package-output/moviefun.jar
